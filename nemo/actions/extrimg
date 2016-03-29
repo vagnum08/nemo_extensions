@@ -20,6 +20,12 @@ function extrimg(){
         rm -rf $od/ppt;       
     fi
     
+    if [ $extension == 'odp' ]; then
+        unzip  "$1" 'media/*' -d $od;
+        mv $od/media/* $od;
+        rm -rf $od/media;       
+    fi
+    
     if [ $extension == 'odt' ]; then
         unzip  "$1" 'Pictures/*' -d "$od";
         mv $od/Pictures/* $od;
