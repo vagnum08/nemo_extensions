@@ -8,15 +8,19 @@ function extrimg(){
     od="$dname"/$(echo $filename | tr ' ' '_')_images;
     echo "$od"
     echo "$filename"
-    if [[ ($extension == 'docx') || ($extension == 'doc') ]]; then
-        echo word
+    if [ $extension == 'docx' ]; then
         unzip  "$1" 'word/media/*' -d $od;
         mv $od/word/media/* $od;
         rm -rf $od/word;       
     fi
     
+    if [ $extension == 'pptx' ]; then
+        unzip  "$1" 'ppt/media/*' -d $od;
+        mv $od/ppt/media/* $od;
+        rm -rf $od/ppt;       
+    fi
+    
     if [ $extension == 'odt' ]; then
-        echo odt
         unzip  "$1" 'Pictures/*' -d "$od";
         mv $od/Pictures/* $od;
         rm -rf $od/Pictures/
